@@ -147,8 +147,7 @@ class FetchSnek {
 	}
 
 	toString() {
-		this.customHandler = 'text';
-		return this;
+		return this.toText();
 	}
 
 	then(resolver, rejecter) {
