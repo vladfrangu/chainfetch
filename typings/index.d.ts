@@ -3,7 +3,7 @@ declare module 'fetchain' {
 	import { METHODS as HTTPMethods, Agent as HTTPAgent } from 'http';
 	import { Agent as HTTPSAgent } from  'https';
 	import { Stream } from 'stream';
-	import { Headers, Response } from 'node-fetch';
+	import { Headers, Response as FetchResponse } from 'node-fetch';
 
 	export class Fetchain {
 		public constructor(method: HTTPMethod, url: URL, options?: FetchainOptions);
@@ -59,7 +59,7 @@ declare module 'fetchain' {
 		ok: boolean;
 		url: string;
 		body: GenericValue;
-		rawBody: Response;
+		rawBody: FetchResponse;
 	};
 
 	type ResponseError = Error & Response;
