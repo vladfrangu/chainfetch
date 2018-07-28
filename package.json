@@ -1,0 +1,32 @@
+{
+  "name": "fetch-snek",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index",
+  "scripts": {
+    "test": "npx eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingDGrizzle/fetch-snek.git"
+  },
+  "keywords": [
+    "fetch",
+    "node",
+    "node-fetch",
+    "chainable"
+  ],
+  "author": "Frangu Vlad <kingdgrizzle@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KingDGrizzle/fetch-snek/issues"
+  },
+  "homepage": "https://github.com/KingDGrizzle/fetch-snek#readme",
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-klasa": "github:dirigeants/klasa-lint"
+  },
+  "dependencies": {
+    "node-fetch": "^2.2.0"
+  }
+}
