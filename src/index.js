@@ -42,6 +42,7 @@ class FetchSnek {
 				value: new Error()
 			}
 		});
+
 		Error.captureStackTrace(this.error);
 		Error.stackTraceLimit = oldLimit;
 	}
@@ -204,8 +205,12 @@ class FetchSnek {
 				returnRes.body = finalBody;
 				if (res.ok) return resolve(returnRes);
 				throw true;
-			} catch (_unused) {
-				this.error.message = `${returnRes.status} ${returnRes.statusText}`.trim();
+			} catch (err) {
+				if (err.code === 'ENOTFOUND') {
+					returnRes.status = 404;
+					returnRes.statusText = `Request to ${this.options.url.href} failed: Host not Found`;
+				}
+				this.error.message = `${returnRes.status}: ${returnRes.statusText}`.trim();
 				Object.assign(this.error, returnRes);
 				return reject(this.error);
 			}
