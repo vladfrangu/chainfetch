@@ -7,7 +7,7 @@ const FormData = require('./forms/FormData');
 
 const NO_BODY = ['get', 'head'];
 
-class FetchSnek {
+class Fetchain {
 
 	constructor(method, url, options = {}) {
 		this.options = {
@@ -223,12 +223,12 @@ class FetchSnek {
 
 }
 
-FetchSnek.METHODS = METHODS.filter((method) => method !== 'M-SEARCH');
-for (const method of FetchSnek.METHODS) {
-	FetchSnek[method.toLowerCase()] = function httpMethod(url, opts) {
-		const Constructor = this && this.prototype instanceof FetchSnek ? this : FetchSnek;
+Fetchain.METHODS = METHODS.filter((method) => method !== 'M-SEARCH');
+for (const method of Fetchain.METHODS) {
+	Fetchain[method.toLowerCase()] = function httpMethod(url, opts) {
+		const Constructor = this && this.prototype instanceof Fetchain ? this : Fetchain;
 		return new Constructor(method, url, opts);
 	};
 }
 
-module.exports = FetchSnek;
+module.exports = Fetchain;
