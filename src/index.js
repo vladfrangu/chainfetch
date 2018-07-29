@@ -1,9 +1,8 @@
-const { METHODS } = require('http');
-const { stringify, parse } = require('querystring');
-const Stream = require('stream');
+const { parse } = require('querystring');
 const fetch = require('node-fetch');
 const { Headers } = fetch;
 const FormData = require('./forms/FormData');
+const mixin = require('./funcs');
 
 const NO_BODY = ['get', 'head'];
 
@@ -45,71 +44,6 @@ class Fetchain {
 
 		Error.captureStackTrace(this.error);
 		Error.stackTraceLimit = oldLimit;
-	}
-
-	query(name, value) {
-		if (Array.isArray(name)) {
-			for (const [k, v] of name) {
-				this.options.url.searchParams.set(k, v);
-			}
-		} else if (name && name.constructor === Object) {
-			for (const [k, v] of Object.entries(name)) {
-				this.options.url.searchParams.set(k, v);
-			}
-		} else {
-			this.options.url.searchParams.set(name, value);
-		}
-		return this;
-	}
-
-	set(name, value) {
-		if (Array.isArray(name)) {
-			for (const [k, v] of name) {
-				this.options.headers.set(k.toLowerCase(), v);
-			}
-		} else if (name && name.constructor === Object) {
-			for (const [k, v] of Object.entries(name)) {
-				this.options.headers.set(k.toLowerCase(), v);
-			}
-		} else {
-			this.options.headers.set(name.toLowerCase(), value);
-		}
-		return this;
-	}
-
-	attach(...args) {
-		const form = this.options.body instanceof FormData ? this.options.body : this.options.body = new FormData();
-		if (args[0] && args[0].constructor === Object) {
-			for (const [k, v] of Object.entries(args[0])) {
-				this.attach(k, v);
-			}
-		} else {
-			form.append(...args);
-		}
-		return this;
-	}
-
-	send(data) {
-		if (data instanceof FormData || Buffer.isBuffer(data) || data instanceof Stream) {
-			this.options.body = data;
-		} else if (data !== null && typeof data === 'object') {
-			const header = this.options.headers.get('content-type');
-			let serialize;
-			if (header) {
-				if (header.includes('application/json')) {
-					serialize = JSON.stringify;
-				} else if (header.includes('urlencoded')) {
-					serialize = stringify;
-				}
-			} else {
-				this.set('Content-Type', 'application/json');
-				serialize = JSON.stringify;
-			}
-			this.options.body = serialize(data);
-		} else {
-			this.options.body = data;
-		}
-		return this;
 	}
 
 	setRedirect(redirect) {
@@ -217,18 +151,8 @@ class Fetchain {
 		}).then(resolver, rejecter);
 	}
 
-	catch(rejecter) {
-		return this.then(null, rejecter);
-	}
-
 }
 
-Fetchain.METHODS = METHODS.filter((method) => method !== 'M-SEARCH');
-for (const method of Fetchain.METHODS) {
-	Fetchain[method.toLowerCase()] = function httpMethod(url, opts) {
-		const Constructor = this && this.prototype instanceof Fetchain ? this : Fetchain;
-		return new Constructor(method, url, opts);
-	};
-}
+mixin(Fetchain);
 
 module.exports = Fetchain;

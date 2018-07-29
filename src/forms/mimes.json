@@ -1,4 +1,5 @@
 {
+  "__comment__": "The following JSON file is taken from devsnek's snekfetch under the MIT license",
   "123": "application/vnd.lotus-1-2-3",
   "ez": "application/andrew-inset",
   "aw": "application/applixware",
