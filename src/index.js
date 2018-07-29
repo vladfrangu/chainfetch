@@ -79,7 +79,7 @@ class Fetchain {
 
 	attach(...args) {
 		const form = this.options.body instanceof FormData ? this.options.body : this.options.body = new FormData();
-		if (args[0] && args[0].constructor === Object {
+		if (args[0] && args[0].constructor === Object) {
 			for (const [k, v] of Object.entries(args[0])) {
 				this.attach(k, v);
 			}
