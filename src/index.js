@@ -34,7 +34,7 @@ class Fetchain {
 			customHandler: {
 				writable: true,
 				enumerable: false,
-				value: 'buffer'
+				value: 'json'
 			},
 			error: {
 				writable: true,
@@ -52,7 +52,7 @@ class Fetchain {
 			for (const [k, v] of name) {
 				this.options.url.searchParams.set(k, v);
 			}
-		} else if (typeof name === 'object') {
+		} else if (name && name.constructor === Object) {
 			for (const [k, v] of Object.entries(name)) {
 				this.options.url.searchParams.set(k, v);
 			}
@@ -67,7 +67,7 @@ class Fetchain {
 			for (const [k, v] of name) {
 				this.options.headers.set(k.toLowerCase(), v);
 			}
-		} else if (typeof name === 'object') {
+		} else if (name && name.constructor === Object) {
 			for (const [k, v] of Object.entries(name)) {
 				this.options.headers.set(k.toLowerCase(), v);
 			}
@@ -79,7 +79,7 @@ class Fetchain {
 
 	attach(...args) {
 		const form = this.options.body instanceof FormData ? this.options.body : this.options.body = new FormData();
-		if (typeof args[0] === 'object') {
+		if (args[0] && args[0].constructor === Object {
 			for (const [k, v] of Object.entries(args[0])) {
 				this.attach(k, v);
 			}
