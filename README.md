@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
 	<br/>
 	<p>
 		<a href="https://www.npmjs.com/package/fetchain"><img src="https://img.shields.io/npm/v/fetchain.svg?maxAge=3600" alt="NPM version" /></a>
@@ -9,7 +9,7 @@
 	<p>
     <a href="https://nodei.co/npm/fetchain/"><img src="https://nodei.co/npm/fetchain.png?downloads=true&stars=true" alt="NPM info"></a>
   </p>
-</div>
+</div> -->
 
 # fetchain
 
