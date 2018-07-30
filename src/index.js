@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const { Headers } = fetch;
 const FormData = require('./forms/FormData');
 const mixin = require('./funcs');
+const URLConstructor = typeof URL !== 'undefined' ? URL : require('url').URL;
 
 const NO_BODY = ['get', 'head'];
 
@@ -11,7 +12,7 @@ class Fetchain {
 	constructor(method, url, options = {}) {
 		this.options = {
 			method: method.toLowerCase(),
-			url: new URL(url),
+			url: new URLConstructor(url),
 			...options,
 			headers: new Headers(),
 			body: null,
