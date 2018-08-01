@@ -190,17 +190,19 @@ class Fetchain {
 				returnRes.url = res.url;
 				returnRes.ok = res.ok;
 				returnRes.rawBody = res.body;
-				let finalBody = await res[this.customHandler]().catch(() => res.buffer());
+				let finalBody = await res.buffer();
 
-				const type = returnRes.headers.get('content-type');
-				if (/application\/json/.test(type) && typeof finalBody !== 'object') {
-					try {
-						finalBody = JSON.parse(String(finalBody));
-					} catch (_unused) {} // eslint-disable-line no-empty
-				} else if (/application\/x-www-form-urlencoded/.test(type)) {
-					finalBody = parse(String(finalBody));
-				} else if (this.customHandler === 'text') {
-					finalBody = String(finalBody);
+				if (this.customHandler !== 'buffer') {
+					const type = returnRes.headers.get('content-type');
+					if ((/application\/json/.test(type) && typeof finalBody !== 'object') || this.customHandler === 'json') {
+						try {
+							finalBody = JSON.parse(String(finalBody));
+						} catch (_unused) {} // eslint-disable-line no-empty
+					} else if (/application\/x-www-form-urlencoded/.test(type)) {
+						finalBody = parse(String(finalBody));
+					} else if (this.customHandler === 'text') {
+						finalBody = String(finalBody);
+					}
 				}
 
 				returnRes.body = finalBody;
@@ -210,6 +212,9 @@ class Fetchain {
 				if (err.code === 'ENOTFOUND') {
 					returnRes.status = 404;
 					returnRes.statusText = `Request to ${this.options.url.href} failed: Host not Found`;
+				} else if (err.code === 'ECONNREFUSED') {
+					returnRes.status = 500;
+					returnRes.statusText = `Request to ${this.options.url.href} failed: Connection Refused`;
 				}
 				this.error.message = `${returnRes.status}: ${returnRes.statusText}`.trim();
 				Object.assign(this.error, returnRes);
