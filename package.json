@@ -1,6 +1,6 @@
 {
   "name": "chainfetch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple, chainable wrapper around node-fetch!",
   "main": "src/index",
   "typings": "./typings/index.d.ts",
