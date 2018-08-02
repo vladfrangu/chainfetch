@@ -1,3 +1,5 @@
+import Chainfetch from 'chainfetch';
+
 declare module 'chainfetch' {
 
 	import { METHODS as NativeHTTPMethods, Agent as HTTPAgent } from 'http';
@@ -22,46 +24,47 @@ declare module 'chainfetch' {
 		public then(onfulfilled?: ((value: Response) => Response | PromiseLike<Response>) | undefined | null, onrejected?: ((error: ResponseError) => ResponseError | PromiseLike<ResponseError>) | undefined | null): Promise<Response | ResponseError>;
 		public catch(onrejected?: ((error: ResponseError) => ResponseError | PromiseLike<ResponseError>) | undefined | null): Promise<ResponseError>;
 
-		public static acl(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static bind(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static checkout(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static connect(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static copy(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static delete(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static get(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static head(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static link(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static lock(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static merge(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static mkactivity(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static mkcalendar(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static mkcol(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static move(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static notify(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static options(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static patch(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static post(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static propfind(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static proppatch(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static purge(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static put(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static rebind(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static report(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static search(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static source(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static subscribe(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static trace(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static unbind(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static unlink(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static unlock(url: string, optinos?: ChainfetchOptions): Chainfetch;
-		public static unsubscribe(url: string, optinos?: ChainfetchOptions): Chainfetch;
-
 		public static METHODS: NativeHTTPMethods;
 
 		private options: ChainfetchOptions;
 		private customHandler: string;
 		private error: Error;
 	}
+
+	export function acl(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function bind(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function checkout(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function connect(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function copy(url: string, options?: ChainfetchOptions): Chainfetch;
+	function _delete(url: string, options?: ChainfetchOptions): Chainfetch;
+	export { _delete as delete };
+	export function get(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function head(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function link(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function lock(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function merge(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function mkactivity(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function mkcalendar(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function mkcol(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function move(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function notify(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function options(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function patch(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function post(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function propfind(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function proppatch(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function purge(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function put(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function rebind(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function report(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function search(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function source(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function subscribe(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function trace(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function unbind(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function unlink(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function unlock(url: string, options?: ChainfetchOptions): Chainfetch;
+	export function unsubscribe(url: string, options?: ChainfetchOptions): Chainfetch;
 
 	class FormData {
 		public constructor();
