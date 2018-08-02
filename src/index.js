@@ -7,6 +7,10 @@ const FormData = require('./forms/FormData');
 const URLConstructor = typeof URL !== 'undefined' ? URL : require('url').URL;
 
 const NO_BODY = ['get', 'head'];
+const ERROR_MESSAGES = {
+	ENOTFOUND: [404, req => `Request to ${req.options.url.href} failed: Host not Found`],
+	ECONNREFUSED: [500, req => `Request to ${req.options.url.href} failed: Connection Refused`]
+};
 
 class Fetchain {
 
@@ -162,7 +166,7 @@ class Fetchain {
 			const returnRes = {
 				headers: new Headers(),
 				status: 0,
-				statusText: 'pending',
+				statusText: 'Uncaught Error. You should report this to the GitHub!',
 				ok: false,
 				url: '',
 				body: null
@@ -197,7 +201,9 @@ class Fetchain {
 					if ((/application\/json/.test(type) && typeof finalBody !== 'object') || this.customHandler === 'json') {
 						try {
 							finalBody = JSON.parse(String(finalBody));
-						} catch (_unused) {} // eslint-disable-line no-empty
+						} catch (_unused) {
+							finalBody = String(finalBody);
+						}
 					} else if (/application\/x-www-form-urlencoded/.test(type)) {
 						finalBody = parse(String(finalBody));
 					} else if (this.customHandler === 'text') {
@@ -207,14 +213,12 @@ class Fetchain {
 
 				returnRes.body = finalBody;
 				if (res.ok) return resolve(returnRes);
-				throw true;
+				throw new Error();
 			} catch (err) {
-				if (err.code === 'ENOTFOUND') {
-					returnRes.status = 404;
-					returnRes.statusText = `Request to ${this.options.url.href} failed: Host not Found`;
-				} else if (err.code === 'ECONNREFUSED') {
-					returnRes.status = 500;
-					returnRes.statusText = `Request to ${this.options.url.href} failed: Connection Refused`;
+				if (err.code) {
+					const [status, statusText] = ERROR_MESSAGES[err.code];
+					returnRes.status = status;
+					returnRes.statusText = typeof statusText === 'function' ? statusText(this) : statusText;
 				}
 				this.error.message = `${returnRes.status}: ${returnRes.statusText}`.trim();
 				Object.assign(this.error, returnRes);

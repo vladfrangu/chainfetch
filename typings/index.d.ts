@@ -22,6 +22,40 @@ declare module 'fetchain' {
 		public then(resolver: Function, rejecter: Function): Promise<Rsponse>;
 		public catch(rejecter: Function): Promise<ResponseError>;
 
+		public acl(url: string, optinos?: FetchainOptions): Fetchain;
+		public bind(url: string, optinos?: FetchainOptions): Fetchain;
+		public checkout(url: string, optinos?: FetchainOptions): Fetchain;
+		public connect(url: string, optinos?: FetchainOptions): Fetchain;
+		public copy(url: string, optinos?: FetchainOptions): Fetchain;
+		public delete(url: string, optinos?: FetchainOptions): Fetchain;
+		public get(url: string, optinos?: FetchainOptions): Fetchain;
+		public head(url: string, optinos?: FetchainOptions): Fetchain;
+		public link(url: string, optinos?: FetchainOptions): Fetchain;
+		public lock(url: string, optinos?: FetchainOptions): Fetchain;
+		public merge(url: string, optinos?: FetchainOptions): Fetchain;
+		public mkactivity(url: string, optinos?: FetchainOptions): Fetchain;
+		public mkcalendar(url: string, optinos?: FetchainOptions): Fetchain;
+		public mkcol(url: string, optinos?: FetchainOptions): Fetchain;
+		public move(url: string, optinos?: FetchainOptions): Fetchain;
+		public notify(url: string, optinos?: FetchainOptions): Fetchain;
+		public options(url: string, optinos?: FetchainOptions): Fetchain;
+		public patch(url: string, optinos?: FetchainOptions): Fetchain;
+		public post(url: string, optinos?: FetchainOptions): Fetchain;
+		public propfind(url: string, optinos?: FetchainOptions): Fetchain;
+		public proppatch(url: string, optinos?: FetchainOptions): Fetchain;
+		public purge(url: string, optinos?: FetchainOptions): Fetchain;
+		public put(url: string, optinos?: FetchainOptions): Fetchain;
+		public rebind(url: string, optinos?: FetchainOptions): Fetchain;
+		public report(url: string, optinos?: FetchainOptions): Fetchain;
+		public search(url: string, optinos?: FetchainOptions): Fetchain;
+		public source(url: string, optinos?: FetchainOptions): Fetchain;
+		public subscribe(url: string, optinos?: FetchainOptions): Fetchain;
+		public trace(url: string, optinos?: FetchainOptions): Fetchain;
+		public unbind(url: string, optinos?: FetchainOptions): Fetchain;
+		public unlink(url: string, optinos?: FetchainOptions): Fetchain;
+		public unlock(url: string, optinos?: FetchainOptions): Fetchain;
+		public unsubscribe(url: string, optinos?: FetchainOptions): Fetchain;
+
 		public static METHODS: HTTPMethods;
 
 		private options: FetchainOptions;
