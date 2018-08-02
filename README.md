@@ -13,7 +13,7 @@
 
 # Chainfetch
 
-~~Snek 🐍~~ Chain your request together with this package!
+Chain your request together with this package!
 
 Wraps around node-fetch to provide you a easier API for it, to ease up migrating to it.
 
