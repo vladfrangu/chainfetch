@@ -1,5 +1,3 @@
-import Chainfetch from 'chainfetch';
-
 declare module 'chainfetch' {
 
 	import { METHODS as NativeHTTPMethods, Agent as HTTPAgent } from 'http';
