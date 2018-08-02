@@ -1,64 +1,64 @@
-declare module 'fetchain' {
+declare module 'chainfetch' {
 
 	import { METHODS as HTTPMethods, Agent as HTTPAgent } from 'http';
 	import { Agent as HTTPSAgent } from  'https';
 	import { Stream } from 'stream';
 	import { Headers, Response as FetchResponse } from 'node-fetch';
 
-	export class Fetchain {
-		public constructor(method: HTTPMethod, url: URL, options?: FetchainOptions);
-		public query(name: Array<string[]> | { [key: string]: value } | string, value?: string): Fetchain;
-		public set(name: Array<string[]> | { [key: string]: value } | string, value?: string): Fetchain;
-		public attach(name: { [key: string]: GenericValue } | string, value?: GenericValue, filename?: string): Fetchain;
-		public send(data: FormData | Buffer | Stream | object): Fetchain;
-		public setRedirect(redirect: boolean): Fetchain;
-		public setFollowCount(count?: number): Fetchain;
-		public setTimeout(timeout: number): Fetchain;
-		public setAgent(agent: HTTPAgent | HTTPSAgent): Fetchain;
-		public toBuffer(): Fetchain;
-		public toJSON(): Fetchain;
-		public toText(): Fetchain;
-		public toString(): Fetchain;
+	export class Chainfetch {
+		public constructor(method: HTTPMethod, url: URL, options?: ChainfetchOptions);
+		public query(name: Array<string[]> | { [key: string]: value } | string, value?: string): Chainfetch;
+		public set(name: Array<string[]> | { [key: string]: value } | string, value?: string): Chainfetch;
+		public attach(name: { [key: string]: GenericValue } | string, value?: GenericValue, filename?: string): Chainfetch;
+		public send(data: FormData | Buffer | Stream | object): Chainfetch;
+		public setRedirect(redirect: boolean): Chainfetch;
+		public setFollowCount(count?: number): Chainfetch;
+		public setTimeout(timeout: number): Chainfetch;
+		public setAgent(agent: HTTPAgent | HTTPSAgent): Chainfetch;
+		public toBuffer(): Chainfetch;
+		public toJSON(): Chainfetch;
+		public toText(): Chainfetch;
+		public toString(): Chainfetch;
 		public then(resolver: Function, rejecter: Function): Promise<Rsponse>;
 		public catch(rejecter: Function): Promise<ResponseError>;
 
-		public acl(url: string, optinos?: FetchainOptions): Fetchain;
-		public bind(url: string, optinos?: FetchainOptions): Fetchain;
-		public checkout(url: string, optinos?: FetchainOptions): Fetchain;
-		public connect(url: string, optinos?: FetchainOptions): Fetchain;
-		public copy(url: string, optinos?: FetchainOptions): Fetchain;
-		public delete(url: string, optinos?: FetchainOptions): Fetchain;
-		public get(url: string, optinos?: FetchainOptions): Fetchain;
-		public head(url: string, optinos?: FetchainOptions): Fetchain;
-		public link(url: string, optinos?: FetchainOptions): Fetchain;
-		public lock(url: string, optinos?: FetchainOptions): Fetchain;
-		public merge(url: string, optinos?: FetchainOptions): Fetchain;
-		public mkactivity(url: string, optinos?: FetchainOptions): Fetchain;
-		public mkcalendar(url: string, optinos?: FetchainOptions): Fetchain;
-		public mkcol(url: string, optinos?: FetchainOptions): Fetchain;
-		public move(url: string, optinos?: FetchainOptions): Fetchain;
-		public notify(url: string, optinos?: FetchainOptions): Fetchain;
-		public options(url: string, optinos?: FetchainOptions): Fetchain;
-		public patch(url: string, optinos?: FetchainOptions): Fetchain;
-		public post(url: string, optinos?: FetchainOptions): Fetchain;
-		public propfind(url: string, optinos?: FetchainOptions): Fetchain;
-		public proppatch(url: string, optinos?: FetchainOptions): Fetchain;
-		public purge(url: string, optinos?: FetchainOptions): Fetchain;
-		public put(url: string, optinos?: FetchainOptions): Fetchain;
-		public rebind(url: string, optinos?: FetchainOptions): Fetchain;
-		public report(url: string, optinos?: FetchainOptions): Fetchain;
-		public search(url: string, optinos?: FetchainOptions): Fetchain;
-		public source(url: string, optinos?: FetchainOptions): Fetchain;
-		public subscribe(url: string, optinos?: FetchainOptions): Fetchain;
-		public trace(url: string, optinos?: FetchainOptions): Fetchain;
-		public unbind(url: string, optinos?: FetchainOptions): Fetchain;
-		public unlink(url: string, optinos?: FetchainOptions): Fetchain;
-		public unlock(url: string, optinos?: FetchainOptions): Fetchain;
-		public unsubscribe(url: string, optinos?: FetchainOptions): Fetchain;
+		public acl(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public bind(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public checkout(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public connect(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public copy(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public delete(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public get(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public head(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public link(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public lock(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public merge(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public mkactivity(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public mkcalendar(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public mkcol(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public move(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public notify(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public options(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public patch(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public post(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public propfind(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public proppatch(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public purge(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public put(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public rebind(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public report(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public search(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public source(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public subscribe(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public trace(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public unbind(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public unlink(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public unlock(url: string, optinos?: ChainfetchOptions): Chainfetch;
+		public unsubscribe(url: string, optinos?: ChainfetchOptions): Chainfetch;
 
 		public static METHODS: HTTPMethods;
 
-		private options: FetchainOptions;
+		private options: ChainfetchOptions;
 		private customHandler: string;
 		private error: Error;
 	};
@@ -74,7 +74,7 @@ declare module 'fetchain' {
 		public end(): Buffer;
 	}
 
-	type FetchainOptions = {
+	type ChainfetchOptions = {
 		method: HTTPMethod;
 		url: URL,
 		headers: Headers,

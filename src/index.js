@@ -12,7 +12,7 @@ const ERROR_MESSAGES = {
 	ECONNREFUSED: [500, req => `Request to ${req.options.url.href} failed: Connection Refused`]
 };
 
-class Fetchain {
+class Chainfetch {
 
 	constructor(method, url, options = {}) {
 		this.options = {
@@ -233,12 +233,12 @@ class Fetchain {
 
 }
 
-Fetchain.METHODS = METHODS.filter((method) => method !== 'M-SEARCH');
-for (const method of Fetchain.METHODS) {
-	Fetchain[method.toLowerCase()] = function httpMethod(url, opts) {
-		const Constructor = this && this.prototype instanceof Fetchain ? this : Fetchain;
+Chainfetch.METHODS = METHODS.filter((method) => method !== 'M-SEARCH');
+for (const method of Chainfetch.METHODS) {
+	Chainfetch[method.toLowerCase()] = function httpMethod(url, opts) {
+		const Constructor = this && this.prototype instanceof Chainfetch ? this : Chainfetch;
 		return new Constructor(method, url, opts);
 	};
 }
 
-module.exports = Fetchain;
+module.exports = Chainfetch;

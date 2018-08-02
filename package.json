@@ -1,5 +1,5 @@
 {
-  "name": "fetchain",
+  "name": "chainfetch",
   "version": "1.0.0",
   "description": "A simple, chainable wrapper around node-fetch!",
   "main": "src/index",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KingDGrizzle/fetchain.git"
+    "url": "git+https://github.com/KingDGrizzle/chainfetch.git"
   },
   "keywords": [
     "fetch",
@@ -22,9 +22,9 @@
   "author": "Frangu Vlad <kingdgrizzle@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KingDGrizzle/fetchain/issues"
+    "url": "https://github.com/KingDGrizzle/chainfetch/issues"
   },
-  "homepage": "https://github.com/KingDGrizzle/fetchain#readme",
+  "homepage": "https://github.com/KingDGrizzle/chainfetch#readme",
   "devDependencies": {
     "eslint": "^5.2.0",
     "eslint-config-klasa": "github:dirigeants/klasa-lint"
