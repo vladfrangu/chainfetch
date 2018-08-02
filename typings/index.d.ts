@@ -70,7 +70,7 @@ declare module 'chainfetch' {
 		public readonly length: number;
 
 		public appent(name: string, data: GenericValue, filename?: string): FormData;
-		public getBoundary(): Array<Buffer>;
+		public getBoundary(): string;
 		public end(): Buffer;
 	}
 
