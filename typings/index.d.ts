@@ -19,8 +19,8 @@ declare module 'chainfetch' {
 		public toJSON(): Chainfetch;
 		public toText(): Chainfetch;
 		public toString(): Chainfetch;
-		public then(resolver: Function, rejecter: Function): Promise<Response>;
-		public catch(rejecter: Function): Promise<ResponseError>;
+		public then(onfulfilled?: ((value: Response) => Response | PromiseLike<Response>) | undefined | null, onrejected?: ((error: ResponseError) => ResponseError | PromiseLike<ResponseError>) | undefined | null): Promise<Response | ResponseError>;
+		public catch(onrejected?: ((error: ResponseError) => ResponseError | PromiseLike<ResponseError>) | undefined | null): Promise<ResponseError>;
 
 		public static acl(url: string, optinos?: ChainfetchOptions): Chainfetch;
 		public static bind(url: string, optinos?: ChainfetchOptions): Chainfetch;
