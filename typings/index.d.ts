@@ -22,8 +22,6 @@ declare module 'chainfetch' {
 		public then(onfulfilled?: ((value: Response) => Response | PromiseLike<Response>) | undefined | null, onrejected?: ((error: ResponseError) => ResponseError | PromiseLike<ResponseError>) | undefined | null): Promise<Response | ResponseError>;
 		public catch(onrejected?: ((error: ResponseError) => ResponseError | PromiseLike<ResponseError>) | undefined | null): Promise<ResponseError>;
 
-		public static METHODS: NativeHTTPMethods;
-
 		private options: ChainfetchOptions;
 		private customHandler: string;
 		private error: Error;
@@ -63,6 +61,8 @@ declare module 'chainfetch' {
 	export function unlink(url: string, options?: ChainfetchOptions): Chainfetch;
 	export function unlock(url: string, options?: ChainfetchOptions): Chainfetch;
 	export function unsubscribe(url: string, options?: ChainfetchOptions): Chainfetch;
+
+	export { NativeHTTPMethods as METHODS };
 
 	class FormData {
 		public constructor();
