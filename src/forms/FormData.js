@@ -24,14 +24,14 @@ SOFTWARE.
 */
 
 const path = require('path');
-const Mime = require('./mime');
+const Mime = require('./Mime');
 
 const CRLF = '\r\n';
 
 class FormData {
 
 	constructor() {
-		this.boundary = `--fetch-snek--${Math.random().toString().slice(2, 7)}`;
+		this.boundary = `--chainfetch--${Math.random().toString().slice(2, 7)}`;
 		this.buffers = [];
 	}
 
