@@ -198,7 +198,7 @@ class Chainfetch {
 
 				if (this.customHandler !== 'buffer') {
 					const type = returnRes.headers.get('content-type');
-					if ((/application\/json/.test(type) && typeof finalBody !== 'object') || this.customHandler === 'json') {
+					if (/application\/json/.test(type) || this.customHandler === 'json') {
 						try {
 							finalBody = JSON.parse(String(finalBody));
 						} catch (_unused) {

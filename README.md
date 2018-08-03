@@ -38,7 +38,7 @@ And then you're ready to roll! Or...chain.
 ```js
 const fetch = require('chainfetch');
 
-const res = await fetch.get('https://example.com').toBuffer();
+const res = await fetch.get('https://example.com').toText();
 ```
 
 For posting data, you can do something similar to this
@@ -46,5 +46,17 @@ For posting data, you can do something similar to this
 ```js
 const fetch = require('chainfetch');
 
-const res = await fetch.post('https://example.com').query({ isSimple: true }).query('isAmazing', true).send({ string: 'chainfetch is simple and amazing!' }).toJSON();
+const res = await fetch.post('https://example.com').query({ isSimple: true }).query('isAmazing', true).send({ string: 'chainfetch is simple and amazing!' });
 ```
+
+## Meaning of `toJSON`, `toText` and `toBuffer`
+
+In chainfetch, there are 4 functions which can determine how the response should be parsed. You can access the body by using `res.body`.
+
+By default, we try to JSON.parse the body if the response provides the `Content-Type` header, and it includes `application/json`.
+
+|       Function      |                                          What it Returns                                          |
+|:-------------------:|:-------------------------------------------------------------------------------------------------:|
+|       toBuffer      |                     Does no processing on the body, and returns it as a buffer                    |
+|        toJSON       | Attempts to parse the response body as a JSON object, otherwise it returns the stringified Buffer |
+| toText and toString |              Both of these functions take the response body and turn it into a string             |
