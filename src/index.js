@@ -193,8 +193,8 @@ class Chainfetch {
 				returnRes.statusText = res.statusText;
 				returnRes.url = res.url;
 				returnRes.ok = res.ok;
-				returnRes.rawBody = res.body;
 				let finalBody = await res.buffer();
+				returnRes.rawBody = finalBody;
 
 				if (this.customHandler !== 'buffer') {
 					const type = returnRes.headers.get('content-type');
