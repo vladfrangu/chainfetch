@@ -13,9 +13,7 @@
 
 # Chainfetch
 
-Chain your request together with this package!
-
-Wraps around node-fetch to provide you a easier API for it, to ease up migrating to it.
+Super simple HTTP requests using node-fetch and a chainable interface
 
 ## Getting Started
 
