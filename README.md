@@ -53,7 +53,7 @@ In chainfetch, there are 4 functions which can determine how the response should
 
 By default, we try to JSON.parse the body if the response provides the `Content-Type` header and it includes `application/json`.
 
-|       Function      |                                          What it Returns                                          |
+|       Function      |                                          What it returns                                          |
 |:-------------------:|:-------------------------------------------------------------------------------------------------:|
 |       toBuffer      |                     Does no processing on the body, and returns it as a buffer                    |
 |        toJSON       | Attempts to parse the response body as a JSON object, otherwise it returns the stringified Buffer |
