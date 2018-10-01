@@ -51,7 +51,7 @@ const res = await fetch.post('https://example.com').query({ isSimple: true }).qu
 
 In chainfetch, there are 4 functions which can determine how the response should be parsed. You can access the body by using `res.body`.
 
-By default, we try to JSON.parse the body if the response provides the `Content-Type` header, and it includes `application/json`.
+By default, we try to JSON.parse the body if the response provides the `Content-Type` header and it includes `application/json`.
 
 |       Function      |                                          What it Returns                                          |
 |:-------------------:|:-------------------------------------------------------------------------------------------------:|
