@@ -1,6 +1,6 @@
 {
   "name": "chainfetch",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A simple, chainable wrapper around node-fetch!",
   "main": "src/index",
   "typings": "./typings/index.d.ts",
@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/KingDGrizzle/chainfetch#readme",
   "devDependencies": {
-    "eslint": "^5.2.0",
+    "@types/node-fetch": "^2.1.2",
+    "eslint": "^5.6.1",
     "eslint-config-klasa": "github:dirigeants/klasa-lint"
   },
   "dependencies": {

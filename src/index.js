@@ -14,6 +14,13 @@ const ERROR_MESSAGES = {
 
 class Chainfetch {
 
+	/**
+	 * Creates an instance of Chainfetch.
+	 * @param {METHODS} method The HTTP method for this request
+	 * @param {string} url The URL
+	 * @param {Object} [options={}] The fetch options
+	 * @memberof Chainfetch
+	 */
 	constructor(method, url, options = {}) {
 		this.options = {
 			method: method.toLowerCase(),
@@ -52,6 +59,13 @@ class Chainfetch {
 		Error.stackTraceLimit = oldLimit;
 	}
 
+	/**
+	 * Adds query parameters to the request.
+	 * @param {string|Object|[string, string][]} name The name or names to add
+	 * @param {string} [value] The value of the query string
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	query(name, value) {
 		if (Array.isArray(name)) {
 			for (const [k, v] of name) {
@@ -67,6 +81,13 @@ class Chainfetch {
 		return this;
 	}
 
+	/**
+	 * Sets one or multiple headers for this request.
+	 * @param {string|Object|[string, string][]} name The header name or names to attach
+	 * @param {string} [value] The value for the header
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	set(name, value) {
 		if (Array.isArray(name)) {
 			for (const [k, v] of name) {
@@ -82,6 +103,13 @@ class Chainfetch {
 		return this;
 	}
 
+	/**
+	 * Attaches values to form data.
+	 * @param {...*} args The arguments for this function
+	 * In order: name, value, filename OR an object where each key has a value
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	attach(...args) {
 		const form = this.options.body instanceof FormData ? this.options.body : this.options.body = new FormData();
 		if (args[0] && args[0].constructor === Object) {
@@ -94,6 +122,12 @@ class Chainfetch {
 		return this;
 	}
 
+	/**
+	 * Sends data to the request.
+	 * @param {Buffer|Stream|FormData|Object|string} data The data to send
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	send(data) {
 		if (data instanceof FormData || Buffer.isBuffer(data) || data instanceof Stream) {
 			this.options.body = data;
@@ -117,43 +151,97 @@ class Chainfetch {
 		return this;
 	}
 
+	/**
+	 * Enables or disables following redirects for this request.
+	 * @param {boolean} redirect If the request should follow redirects
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	setRedirect(redirect) {
 		this.options.redirect = redirect;
 		return this;
 	}
 
+	/**
+	 * Sets the amount of redirects the request should follow before rejecting.
+	 * @param {number} [count] The amount of redirects to follow.
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	setFollowCount(count) {
 		this.options.follow = count || 20;
 		return this;
 	}
 
+	/**
+	 * Sets the timeout in milliseconds before the request should reject.
+	 * @param {number} [timeout] The timeout in milliseconds
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	setTimeout(timeout) {
 		this.options.timeout = typeof timeout === 'number' ? timeout : 0;
 		return this;
 	}
 
+	/**
+	 * Sets the HTTP(s) agent for this request.
+	 * @param {HTTPAgent|HTTPSAgent} agent The agent to use
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	setAgent(agent) {
 		this.options.agent = agent;
 		return this;
 	}
 
+	/**
+	 * Makes the returned body be just a buffer.
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	toBuffer() {
 		this.customHandler = 'buffer';
 		return this;
 	}
 
+	/**
+	 * Makes the returned body be tried to be parsed as a JSON object,
+	 * else returns the stringified body.
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	toJSON() {
 		this.customHandler = 'json';
 		return this;
 	}
 
+	/**
+	 * Makes the returned body be a string.
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	toText() {
 		this.customHandler = 'text';
 		return this;
 	}
 
+	/**
+	 * Makes the returned body be a string.
+	 * @returns {this}
+	 * @memberof Chainfetch
+	 */
 	toString() {
 		return this.toText();
+	}
+
+	/**
+	 * Initiates the request right away, returning just the body.
+	 * @returns {Promise<Object|string|Buffer>}
+	 * @memberof Chainfetch
+	 */
+	onlyBody() {
+		return this.then((result) => result.body);
 	}
 
 	then(resolver, rejecter) {
@@ -172,10 +260,7 @@ class Chainfetch {
 				body: null
 			};
 
-			Object.defineProperty(returnRes, 'rawBody', {
-				enumerable: false,
-				writable: true
-			});
+			Object.defineProperty(returnRes, 'raw', {	enumerable: false, writable: true });
 
 			try {
 				const res = await fetch(this.options.url.href, {
@@ -188,13 +273,15 @@ class Chainfetch {
 					agent: this.options.agent,
 					body: NO_BODY.includes(this.options.method) ? undefined : this.options.body instanceof FormData ? this.options.body.end() : this.options.body
 				});
+
 				returnRes.headers = res.headers;
 				returnRes.status = res.status;
 				returnRes.statusText = res.statusText;
 				returnRes.url = res.url;
 				returnRes.ok = res.ok;
-				let finalBody = await res.buffer();
-				returnRes.rawBody = finalBody;
+				const buffer = await res.buffer();
+				returnRes.raw = buffer;
+				let finalBody = buffer;
 
 				if (this.customHandler !== 'buffer') {
 					const type = returnRes.headers.get('content-type');
@@ -215,7 +302,7 @@ class Chainfetch {
 				if (res.ok) return resolve(returnRes);
 				throw new Error();
 			} catch (err) {
-				if (err.code) {
+				if (err.code && err.code in ERROR_MESSAGES) {
 					const [status, statusText] = ERROR_MESSAGES[err.code];
 					returnRes.status = status;
 					returnRes.statusText = typeof statusText === 'function' ? statusText(this) : statusText;
@@ -235,10 +322,7 @@ class Chainfetch {
 
 Chainfetch.METHODS = METHODS.filter((method) => method !== 'M-SEARCH');
 for (const method of Chainfetch.METHODS) {
-	Chainfetch[method.toLowerCase()] = function httpMethod(url, opts) {
-		const Constructor = this && this.prototype instanceof Chainfetch ? this : Chainfetch;
-		return new Constructor(method, url, opts);
-	};
+	Chainfetch[method.toLowerCase()] = (url, options = {}) => new Chainfetch(method, url, options);
 }
 
 module.exports = Chainfetch;

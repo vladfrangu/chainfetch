@@ -4,8 +4,12 @@ declare module 'chainfetch' {
 	import { Agent as HTTPSAgent } from  'https';
 	import { Stream } from 'stream';
 	import { Headers, Response as FetchResponse } from 'node-fetch';
+	import { URL } from 'url';
 
 	export default class Chainfetch {
+		private options: ChainfetchOptions;
+		private customHandler: string;
+		private error: Error;
 		public constructor(method: HTTPMethod, url: URL, options?: ChainfetchOptions);
 		public query(name: Array<string[]> | { [key: string]: string } | string, value?: string): Chainfetch;
 		public set(name: Array<string[]> | { [key: string]: string } | string, value?: string): Chainfetch;
@@ -19,12 +23,9 @@ declare module 'chainfetch' {
 		public toJSON(): Chainfetch;
 		public toText(): Chainfetch;
 		public toString(): Chainfetch;
-		public then(onfulfilled?: ((value: Response) => Response | PromiseLike<Response>) | undefined | null, onrejected?: ((error: ResponseError) => ResponseError | PromiseLike<ResponseError>) | undefined | null): Promise<Response | ResponseError>;
-		public catch(onrejected?: ((error: ResponseError) => ResponseError | PromiseLike<ResponseError>) | undefined | null): Promise<ResponseError>;
-
-		private options: ChainfetchOptions;
-		private customHandler: string;
-		private error: Error;
+		public onlyBody<T = any>(): Promise<T>;
+		public then(onfulfilled?: ((value: Response) => any | PromiseLike<any>) | undefined | null, onrejected?: ((error: ResponseError) => any | PromiseLike<any>) | undefined | null): Promise<Response | ResponseError>;
+		public catch(onrejected?: ((error: ResponseError) => any | PromiseLike<any>) | undefined | null): Promise<ResponseError>;
 	}
 
 	export function acl(url: string, options?: ChainfetchOptions): Chainfetch;
@@ -94,12 +95,12 @@ declare module 'chainfetch' {
 		ok: boolean;
 		url: string;
 		body: GenericValue;
-		rawBody: FetchResponse;
+		raw: Buffer;
 	};
 
 	type ResponseError = Error & Response;
 
-	type GenericValue = Buffer | string | object;
+	type GenericValue = Buffer | string | object | any;
 
 	type HTTPMethod = 'acl'
 		| 'bind'
