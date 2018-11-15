@@ -30,7 +30,7 @@
     "eslint": "^5.6.1",
     "eslint-config-klasa": "github:dirigeants/klasa-lint"
   },
-  "dependencies": {
+  "peerDependencies": {
     "node-fetch": "^2.2.0"
   }
 }
