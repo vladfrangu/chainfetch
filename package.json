@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KingDGrizzle/chainfetch.git"
+    "url": "git+https://github.com/vladfrangu/chainfetch.git"
   },
   "keywords": [
     "fetch",
@@ -22,9 +22,9 @@
   "author": "Frangu Vlad <kingdgrizzle@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KingDGrizzle/chainfetch/issues"
+    "url": "https://github.com/vladfrangu/chainfetch/issues"
   },
-  "homepage": "https://github.com/KingDGrizzle/chainfetch#readme",
+  "homepage": "https://github.com/vladfrangu/chainfetch#readme",
   "devDependencies": {
     "@types/node-fetch": "^2.1.2",
     "eslint": "^5.6.1",
