@@ -47,6 +47,25 @@ const fetch = require('chainfetch');
 const res = await fetch.post('https://example.com').query({ isSimple: true }).query('isAmazing', true).send({ string: 'chainfetch is simple and amazing!' });
 ```
 
+## Are you a TypeScript user
+
+We got you covered! We have rich typings which should work in all cases (if not, feel free to submit an issue ❤️)
+
+```ts
+import chainfetch from 'chainfetch';
+// Or
+import { get } from 'chainfetch';
+// Or
+import * as chainfetch from 'chainfetch';
+
+// Works
+chainfetch.get();
+
+// If you want to create your own custom class for custom handling
+const myCustomClass = new chainfetch('HTTP METHOD', 'URL');
+myCustomClass.get();
+```
+
 ## Meaning of `toJSON`, `toText` and `toBuffer`
 
 In chainfetch, there are 4 functions which can determine how the response should be parsed. You can access the body by using `res.body`.
