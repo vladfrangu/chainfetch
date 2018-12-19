@@ -20,11 +20,11 @@ Super simple HTTP requests using node-fetch and a chainable interface
 First off, you need to install the module! To do so,
 
 ```bash
-npm i chainfetch
+npm i chainfetch node-fetch
 
 # Or if you are using yarn
 
-yarn add chainfetch
+yarn add chainfetch node-fetch
 ```
 
 And then you're ready to roll! Or...chain.
