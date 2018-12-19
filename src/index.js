@@ -16,7 +16,7 @@ class Chainfetch {
 
 	/**
 	 * Creates an instance of Chainfetch.
-	 * @param {METHODS} method The HTTP method for this request
+	 * @param {string} method The HTTP method for this request
 	 * @param {string} url The URL
 	 * @param {Object} [options={}] The fetch options
 	 * @memberof Chainfetch
@@ -326,3 +326,5 @@ for (const method of Chainfetch.METHODS) {
 }
 
 module.exports = Chainfetch;
+// For TS users since TS adds .default to our require if you use the `import fetch from 'chainfetch'` imports
+module.exports.default = Chainfetch;

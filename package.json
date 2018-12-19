@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "description": "A simple, chainable wrapper around node-fetch!",
   "main": "src/index",
-  "typings": "./typings/index.d.ts",
+  "typings": "typings/index.d.ts",
   "scripts": {
     "test": "npx eslint src"
   },

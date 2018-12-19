@@ -10,11 +10,12 @@ declare module 'chainfetch' {
 		private options: ChainfetchOptions;
 		private customHandler: string;
 		private error: Error;
+		new(method: HTTPMethod, url: URL, options?: ChainfetchOptions): Chainfetch;
 		public constructor(method: HTTPMethod, url: URL, options?: ChainfetchOptions);
 		public query(name: Array<string[]> | { [key: string]: string } | string, value?: string): Chainfetch;
 		public set(name: Array<string[]> | { [key: string]: string } | string, value?: string): Chainfetch;
 		public attach(name: { [key: string]: GenericValue } | string, value?: GenericValue, filename?: string): Chainfetch;
-		public send(data: FormData | Buffer | Stream | object): Chainfetch;
+		public send(data: FormData | Buffer | Stream | object | string): Chainfetch;
 		public setRedirect(redirect: boolean): Chainfetch;
 		public setFollowCount(count?: number): Chainfetch;
 		public setTimeout(timeout: number): Chainfetch;
@@ -26,6 +27,40 @@ declare module 'chainfetch' {
 		public onlyBody<T = any>(): Promise<T>;
 		public then(onfulfilled?: ((value: Response) => any | PromiseLike<any>) | undefined | null, onrejected?: ((error: ResponseError) => any | PromiseLike<any>) | undefined | null): Promise<Response | ResponseError>;
 		public catch(onrejected?: ((error: ResponseError) => any | PromiseLike<any>) | undefined | null): Promise<ResponseError>;
+
+		public static acl(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static bind(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static checkout(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static connect(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static copy(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static delete(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static get(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static head(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static link(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static lock(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static merge(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static mkactivity(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static mkcalendar(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static mkcol(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static move(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static notify(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static options(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static patch(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static post(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static propfind(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static proppatch(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static purge(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static put(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static rebind(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static report(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static search(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static source(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static subscribe(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static trace(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static unbind(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static unlink(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static unlock(url: string, options?: ChainfetchOptions): Chainfetch;
+		public static unsubscribe(url: string, options?: ChainfetchOptions): Chainfetch;
 	}
 
 	export function acl(url: string, options?: ChainfetchOptions): Chainfetch;
