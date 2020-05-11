@@ -27,7 +27,7 @@
   "homepage": "https://github.com/vladfrangu/chainfetch#readme",
   "devDependencies": {
     "@types/node-fetch": "^2.1.2",
-    "eslint": "^5.6.1",
+    "eslint": "^7.0.0",
     "eslint-config-klasa": "github:dirigeants/klasa-lint"
   },
   "peerDependencies": {
